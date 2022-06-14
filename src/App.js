@@ -1,19 +1,17 @@
-//Apps.js
-
 import React, { Component } from 'react';
-import Prompts from './Prompts';
 import './App.css';
-
+import Card from './Card';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
+      currentPrompt: 0,
       prompts: [
-        {id: 1, title: "Start", text:'This is the start of your journey'},
-        {id: 2, title: "Middle", text:'This is the middle of your journey'},
-        {id: 3, title: "End", text:'This is the end of your journey'},
-      ]
+        {id: 0, title: "Start", text:'This is the start of your journey', next:[1, 1, 1, 1]},
+        {id: 1, title: "Middle", text:'This is the middle of your journey', next:[2, 2, 2 ,2]},
+        {id: 2, title: "End", text:'This is the end of your journey', next:[0, 0, 0, 0]},
+      ],
     }
   }
 
@@ -21,7 +19,12 @@ class App extends Component {
     return (
       <main className='App'>
         <h1>Story Teller</h1>
-        <Prompts prompts={this.state.prompts} />
+          <div className="content">
+              <Card
+                title = {this.state.prompts[this.state.currentPrompt].title}
+                text = {this.state.prompts[this.state.currentPrompt].text}
+              ></Card>
+          </div>
       </main>
     )
   }
